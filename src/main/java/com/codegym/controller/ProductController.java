@@ -5,9 +5,12 @@ import com.codegym.model.Product;
 import com.codegym.service.category.CategoryService;
 import com.codegym.service.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import java.util.List;
 
@@ -26,9 +29,9 @@ public class ProductController {
     }
 
     @GetMapping("/index")
-    public ModelAndView showListProduct() {
+    public ModelAndView showListProduct(@PageableDefault(size = 2) Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("list", productService.getAll());
+        modelAndView.addObject("list", productService.getAll(pageable));
         return modelAndView;
     }
 

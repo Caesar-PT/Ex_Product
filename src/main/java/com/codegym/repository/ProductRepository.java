@@ -20,5 +20,4 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, L
     @Query(value = "select sum(price) from Product", nativeQuery = false)
     double getSumPrice();
 
-
 }
